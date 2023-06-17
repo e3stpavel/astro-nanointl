@@ -1,11 +1,11 @@
 {
   "name": "astro-nanointl",
-  "license": "MIT",
   "type": "module",
+  "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -14,13 +14,16 @@
     "index.ts"
   ],
   "scripts": {
-    "build": "tsup index.ts --format esm --dts"
-  },
-  "devDependencies": {
-    "astro": "^2.6.4",
-    "tsup": "^7.0.0"
+    "build": "tsup index.ts --format esm --dts",
+    "lint": "tsc && eslint ."
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-ts": "^0.39.5",
+    "astro": "^2.6.4",
+    "eslint": "^8.43.0",
+    "tsup": "^7.0.0"
   }
 }
