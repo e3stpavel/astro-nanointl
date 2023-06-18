@@ -7,6 +7,13 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./utils": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -14,7 +21,7 @@
     "index.ts"
   ],
   "scripts": {
-    "build": "tsup index.ts --format esm --dts",
+    "build": "tsup index.ts src/index.ts --format esm --dts --external virtual:nanointl",
     "lint": "tsc && eslint ."
   },
   "peerDependencies": {
@@ -24,6 +31,8 @@
     "@antfu/eslint-config-ts": "^0.39.5",
     "astro": "^2.6.4",
     "eslint": "^8.43.0",
-    "tsup": "^7.0.0"
+    "nanostores": "^0.9.2",
+    "tsup": "^7.0.0",
+    "vite-plugin-virtual": "^0.2.0"
   }
 }
