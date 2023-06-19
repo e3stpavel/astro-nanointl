@@ -22,7 +22,8 @@
   ],
   "scripts": {
     "build": "tsup index.ts src/index.ts --format esm --dts --external virtual:nanointl",
-    "lint": "tsc && eslint ."
+    "lint": "tsc && eslint .",
+    "vitest": "vitest run"
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"
@@ -33,6 +34,7 @@
     "eslint": "^8.43.0",
     "nanostores": "^0.9.2",
     "tsup": "^7.0.0",
-    "vite-plugin-virtual": "^0.2.0"
+    "vite-plugin-virtual": "^0.2.0",
+    "vitest": "^0.32.2"
   }
 }
