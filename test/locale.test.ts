@@ -9,7 +9,7 @@ vi.mock('virtual:nanointl', () => ({
   },
 }))
 
-describe('useLocale composable', () => {
+describe('useLocale util', () => {
   afterEach(() => {
     vi.resetAllMocks()
   })
@@ -67,7 +67,5 @@ describe('useLocale composable', () => {
     expect(result).toHaveProperty('t')
     expect(result.t).toBeDefined()
     expect(result.t).toStrictEqual({ message: 'Сообщение' })
-
-    // TODO: https://vitest.dev/guide/testing-types.html
   })
 })
