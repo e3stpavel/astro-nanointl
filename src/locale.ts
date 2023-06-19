@@ -7,28 +7,12 @@ interface UseLocaleReturnType<T extends TSchema> {
   t: T
 }
 
-export function useLocale<T extends TSchema>(defaultLocale: undefined, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
-export function useLocale<T extends TSchema>(locale: Locale, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
-export function useLocale<T extends TSchema>(url: URL, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
-export function useLocale<T extends TSchema>(value: Locale | URL | undefined = defaultLocale, componentName: string, baseTranslation: T) {
-  if (value instanceof URL) {
-    const regex = new RegExp(`(?:\/(${[...locales].join('|')})\/)`)
-    const array = regex.exec(value.pathname)
-    if (array === null)
-      return {}
-
-    const result = array.at(1)
-    if (result === undefined)
-      return {}
-
-    value = result as Locale
-  }
-
-  if (!locales.has(value))
+export function useLocale<T extends TSchema>(locale: Locale | undefined = defaultLocale, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>> {
+  if (!locales.has(locale))
     return {}
 
-  if (value === defaultLocale)
-    return { locale: value, t: baseTranslation }
+  if (locale === defaultLocale)
+    return { locale, t: baseTranslation }
 
   const regex = new RegExp(`(?:\/(${[...locales].join('|')})\.)`)
   const translation = Object.entries(resources)
@@ -44,12 +28,12 @@ export function useLocale<T extends TSchema>(value: Locale | URL | undefined = d
       if (result === undefined)
         return false
 
-      return result === value
+      return result === locale
     })
     ?.at(1)
 
   if (translation === undefined || translation === null)
-    return { locale: value }
+    return { locale }
 
-  return { locale: value, t: translation[componentName as keyof typeof translation] as T }
+  return { locale, t: translation[componentName as keyof typeof translation] as T }
 }
