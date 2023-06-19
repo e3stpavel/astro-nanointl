@@ -1,7 +1,10 @@
+type ArrayNonEmpty<T> = [T, ...T[]]
+
 declare module 'virtual:nanointl' {
-  // type Locales<T extends ReadonlyArray<string>> = T
+  type Locales = Readonly<ArrayNonEmpty<string>>
+  type Locale = Locales[number]
   
-  export const locales: ReadonlySet<string>
-  export const defaultLocale: string
-  export const resources: Record<string, unknown>
+  const locales: ReadonlySet<Locale>
+  const defaultLocale: Locale
+  const resources: Record<string, unknown>
 }

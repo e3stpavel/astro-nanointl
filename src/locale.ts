@@ -1,15 +1,16 @@
+import type { Locale } from 'virtual:nanointl'
 import { defaultLocale, locales, resources } from 'virtual:nanointl'
 
 type TSchema = Record<string, string>
-type Locale = typeof defaultLocale
 interface UseLocaleReturnType<T extends TSchema> {
   locale: Locale
   t: T
 }
 
+export function useLocale<T extends TSchema>(defaultLocale: undefined, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
 export function useLocale<T extends TSchema>(locale: Locale, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
 export function useLocale<T extends TSchema>(url: URL, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>>
-export function useLocale<T extends TSchema>(value: Locale | URL, componentName: string, baseTranslation: T) {
+export function useLocale<T extends TSchema>(value: Locale | URL | undefined = defaultLocale, componentName: string, baseTranslation: T) {
   if (value instanceof URL) {
     const regex = new RegExp(`(?:\/(${[...locales].join('|')})\/)`)
     const array = regex.exec(value.pathname)

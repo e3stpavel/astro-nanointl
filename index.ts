@@ -1,7 +1,9 @@
 import type { AstroIntegration } from 'astro'
+import type { Locales } from 'virtual:nanointl'
 import virtual from 'vite-plugin-virtual'
 
-type Shape = Readonly<[string, ...string[]]>
+// type Shape = Readonly<[string, ...string[]]>
+type Shape = Locales
 interface UserOptions<T extends Shape> {
   locales: T
   defaultLocale?: T[number]
