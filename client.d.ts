@@ -8,3 +8,9 @@ declare module 'virtual:nanointl' {
   const defaultLocale: Locale
   const resources: Record<string, unknown>
 }
+
+declare namespace App {
+  interface Locals {
+    locale?: import('virtual:nanointl').Locale
+  }
+}

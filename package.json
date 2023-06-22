@@ -11,6 +11,10 @@
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js"
     },
+    "./middleware": {
+      "types": "./dist/src/middleware/index.d.ts",
+      "import": "./dist/src/middleware/index.js"
+    },
     "./client": {
       "types": "./client.d.ts"
     },
@@ -21,7 +25,7 @@
     "index.ts"
   ],
   "scripts": {
-    "build": "tsup index.ts src/index.ts --format esm --dts --external virtual:nanointl",
+    "build": "tsup index.ts src/index.ts src/middleware/index.ts --format esm --dts --external virtual:nanointl",
     "lint": "tsc && eslint .",
     "vitest": "vitest run"
   },
