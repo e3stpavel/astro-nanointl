@@ -1,19 +1,7 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { useLocales } from '../src'
 
-vi.mock('virtual:nanointl', () => ({
-  locales: new Set(['en', 'ru']),
-  defaultLocale: 'en',
-  resources: {
-    './locales/some-path/ru.json': { componentName: { message: 'Сообщение' } },
-  },
-}))
-
 describe('useLocales util', () => {
-  afterEach(() => {
-    vi.resetAllMocks()
-  })
-
   it('should return locales and default one', () => {
     const result = useLocales()
 
