@@ -1,9 +1,11 @@
 import type { Locale, Locales } from 'virtual:nanointl'
 import { defaultLocale, locales } from 'virtual:nanointl'
+import { l } from './l'
 
 interface UseLocalesReturnType {
   locales: Locales
   defaultLocale: Locale
+  l: typeof l
 }
 
 function castToArrayNonEmpty<T>(array: Array<T>): ArrayNonEmpty<T> {
@@ -19,6 +21,6 @@ export function useLocales(): UseLocalesReturnType {
   return {
     locales: castToArrayNonEmpty([...locales]),
     defaultLocale,
-    // TODO: l function
+    l,
   }
 }

@@ -1,13 +1,18 @@
 import type { Locale } from 'virtual:nanointl'
 import { defaultLocale, locales, resources } from 'virtual:nanointl'
 
-type TSchema = Record<string, string>
+export type TSchema = Record<string, string>
+export type FunctionParameters<T> = [componentName: string, baseTranslation: T]
+
 interface UseLocaleReturnType<T extends TSchema> {
   locale: Locale
   t: T
 }
 
-export function useLocale<T extends TSchema>(locale: Locale | undefined = defaultLocale, componentName: string, baseTranslation: T): Partial<UseLocaleReturnType<T>> {
+export function useLocale<T extends TSchema>(
+  locale: Locale | undefined = defaultLocale,
+  ...[componentName, baseTranslation]: FunctionParameters<T>
+): Partial<UseLocaleReturnType<T>> {
   if (!locales.has(locale))
     return {}
 
@@ -37,3 +42,5 @@ export function useLocale<T extends TSchema>(locale: Locale | undefined = defaul
 
   return { locale, t: translation[componentName as keyof typeof translation] as T }
 }
+
+// const {t, locale} = useLocale('aa', 'ahsh', { h: 'ksk'})
