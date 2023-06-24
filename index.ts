@@ -16,7 +16,7 @@ function importLocalesGlob() {
   ], { eager: true, import: 'default' })
 }
 
-export default function<const T extends Shape>({ locales, defaultLocale = locales.at(0)! }: UserOptions<T>): AstroIntegration {
+export function nanoIntlIntegration<const T extends Shape>({ locales, defaultLocale = locales.at(0)! }: UserOptions<T>): AstroIntegration {
   return {
     name: 'astro-nanointl',
     hooks: {
@@ -40,3 +40,5 @@ export default function<const T extends Shape>({ locales, defaultLocale = locale
     },
   }
 }
+
+export default nanoIntlIntegration

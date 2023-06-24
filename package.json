@@ -21,8 +21,14 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
-    "index.ts"
+    "dist",
+    "client.d.ts"
+  ],
+  "keywords": [
+    "astro",
+    "withastro",
+    "astro-component",
+    "astro-integration"
   ],
   "scripts": {
     "build": "tsup index.ts src/index.ts src/middleware/index.ts --format esm --dts --external virtual:nanointl",
@@ -36,7 +42,6 @@
     "@antfu/eslint-config-ts": "^0.39.5",
     "astro": "^2.6.4",
     "eslint": "^8.43.0",
-    "nanostores": "^0.9.2",
     "tsup": "^7.0.0",
     "vite-plugin-virtual": "^0.2.0",
     "vitest": "^0.32.2"
