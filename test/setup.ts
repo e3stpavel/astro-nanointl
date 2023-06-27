@@ -5,6 +5,16 @@ vi.mock('virtual:nanointl', () => ({
   defaultLocale: 'en',
   resources: {
     './locales/some-path/ru.json': { componentName: { message: 'Сообщение' } },
+    './locales/some-other-path/ru.json': {
+      transformers: {
+        parameters: 'Привет от {name}',
+        pluralization: {
+          one: 'просто робот',
+          few: '{count} робота',
+          many: '{count} роботов',
+        },
+      },
+    },
   },
 }))
 
