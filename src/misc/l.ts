@@ -1,14 +1,14 @@
 import type { Locale } from 'virtual:nanointl'
 import { locales } from 'virtual:nanointl'
 
-import type { FunctionParameters, TSchema } from './locale'
-import { useLocale } from './locale'
+import type { FunctionParameters, Schema } from '../locale'
+import { useLocale } from '../locale'
 
-interface LFunctionReturnType<T extends TSchema> {
+interface LFunctionReturnType<T extends Schema> {
   [locale: Locale]: T
 }
 
-export function l<T extends TSchema>(...[componentName, baseTranslation]: FunctionParameters<T>): LFunctionReturnType<T> {
+export function l<T extends Schema>(...[componentName, baseTranslation]: FunctionParameters<T>): LFunctionReturnType<T> {
   const map = new Map<Locale, T>()
 
   locales.forEach((locale) => {

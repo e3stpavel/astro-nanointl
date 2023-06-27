@@ -1,6 +1,6 @@
 import type { Locale, Locales } from 'virtual:nanointl'
 import { defaultLocale, locales } from 'virtual:nanointl'
-import { l } from './l'
+import { l } from './misc/l'
 
 interface UseLocalesReturnType {
   locales: Locales
