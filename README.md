@@ -38,6 +38,17 @@ If you're using TypeScript consider adding types to your `env.d.ts`:
 +/// <reference types="astro-nanointl/client" />
 ```
 
+### TypeScript Wizards
+If you want to be __stricter with types__ you can go ahead and override `UserDefinedIntl` interface with your types in `env.d.ts` like so:
+```typescript
+declare module 'virtual:nanointl' {
+  interface UserDefinedIntl {
+    // here is your locales types
+    locales: ['en', 'ru']
+  }
+}
+```
+
 ### Declare your translations
 Add your translations to whatever directory you want in project, __but keep in mind__ that integration will scan for every JSON file that ends with locale specified in integration's `locales` property and is in `locales` or `translations` directory except `public` directory. The glob pattern is the following:
 ```typescript
@@ -53,6 +64,9 @@ Translation files should be plain `JSON` files __without deeply nested objects__
 //  or src/locales/ru.json
 //  or locales/greetings/ru.json
 //  or src/locales/greetings/ru.json
+// all of the above are valid paths
+//  but not:
+//  public/locales/ru.json
 {
   "greetings": { // 'greetings' is componentName
     "hello": "Привет" // this is a transaltion object
@@ -190,6 +204,61 @@ __While in SSR__, you don't have to change anything except adding [rest paramete
 ### Slugs
 __Keep in mind!__ You can also use `useLocale` composable in `getStaticPaths` function which will let you add translated slugs to generated routes __in SSG__. __For SSR__, you can use regular `if` statement to check if slug matches the translation and then decide what to `return`: the actual page or 404 page.
 
+### Parameterization, pluralization and more
+Out of the box you can use following transformers:
+* `params` - lets you add parameters to your translation, like so: 
+```typescript
+greet: params<{ name: string }>('Hello {name}!')
+// then use
+t.greet({ name: 'John' }) // prints `Hello, John!`
+```
+* `count` - lets you quickly introduce pluralization, like this:
+```typescript
+stars: count({
+  one: 'a star',
+  many: '{count} stars'
+})
+// then use
+t.stars(1) // prints `a star`
+t.stars(2) // prints `2 stars`
+```
+* `args` - lets you specify arguments for translation, like:
+```typescript
+candies: args<[string, string]>('The first candy name is %1, while second one is %2')
+// then use
+t.candies('Snickers', 'Bounty') // prints `The first candy name is Snickers, while second one is Bounty`
+```
+
+__Keep in mind!__ The translation in files should represent the input transformer string, meaning:
+```typescript
+// with this base translation
+{
+  greet: params<{ name: string }>('Hello {name}!'),
+  stars: count({
+    one: 'a star',
+    many: '{count} stars'
+  }),
+  candies: args<[string, string]>('The first candy name is %1, while second one is %2')
+}
+```
+```json
+// ru.json
+// json translation should look like this
+{
+  "componentName": {
+    "greet": "Привет, {name}!",
+    "stars": {
+      "one": "звезда",
+      "few": "{count} звезды",
+      "many": "{count} звёзд"
+    },
+    "candies": "Название первой конфеты - %1, в то время как вторая называется %2"
+  }
+}
+```
+
+For more advanced use cases you can [create your own transformer using `@nanostores/i18n` docs](https://github.com/nanostores/i18n#custom-variable-translations).
+
 ### Ideas
 - [ ] You can use [Content Collections](https://docs.astro.build/en/guides/content-collections/) and [this example](https://docs.astro.build/en/guides/content-collections/#organizing-with-subdirectories) to add localized content to your pages.
 - [ ] You can add custom middleware to add the [`Content-Language` response header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language). This will allow
@@ -252,6 +321,7 @@ Params: none
 Returns:
 * :wave: `locales` - non empty array of all available locales, __the order can be not the same as in integration setup__
 * :wave: `defaultLocale` - default locale
+* :wave: `l` - `l` function, that returns the list of all translations in format `{ '[locale]': { key: 'translation' } }`
 
 ### `useLocale`
 Return the locale and `t` function which is used for translation.
