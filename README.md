@@ -276,6 +276,13 @@ For more advanced use cases you can [create your own transformer using `@nanosto
 - [ ] Use translated slugs that will boost your SEO. You can use them in both SSG and SSR. It is simple as calling `useLocale`. Read [this](#slugs).
 - [ ] Add [`lang` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) to you `html` element in layout. This can be accomplished by either using [`extractLocale` middleware](#middleware) or passing `locale` as [a prop to layout](https://docs.astro.build/en/core-concepts/astro-components/#component-props).
 - [ ] Pass all available translation using `l` function to your client-side (UI Frameworks) components as prop and dynamically change them on the fly. This can be especially useful in `output: 'static'` mode when you need to localize some static page on the client like 404 page.
+  ```typescript
+  const { l } = useLocales()
+  const translations = l('greetings', { hello: 'Hello' })
+
+  console.log(translations.en.hello) // `Hello`
+  console.log(translations.ru.hello) // `Привет`
+  ```
 - [ ] Keep the track of current locale and change it on the client using [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). The following script will let you to quickly persist the locale on the client and use it here and thereafter. _Advice!_ You can also use [`nanostores/persistent`](https://github.com/nanostores/persistent) to add some layer on the top of vanilla `localStorage`. _More advice!_ By adding this script to some layout will help you to update your locale on the client in every page that uses the layout.
   ```typescript
   <script>
