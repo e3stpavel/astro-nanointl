@@ -14,80 +14,69 @@ interface Transformer {
   input: string
 }
 
-export function useLocale<TSchema extends Schema, TKey extends keyof TSchema>(
+export function useLocale<TSchema extends Schema>(
   locale: Locale | undefined = defaultLocale,
   ...[componentName, baseTranslation]: FunctionParameters<TSchema>
 ): Partial<UseLocaleReturnType<TSchema>> {
+  if (locale === undefined || locale === defaultLocale) {
+    // use base translation
+    const entries = Object.keys(baseTranslation).map((key) => {
+      const value = baseTranslation[key] as string | Transformer
+
+      if (typeof value === 'string')
+        return [key, value]
+
+      return [
+        key, (...args: unknown[]) => value.transform(locale, value.input, args),
+      ]
+    })
+
+    return { locale, t: Object.fromEntries(entries) }
+  }
+
   if (!locales.has(locale))
     return {}
 
-  let t: TSchema
+  // find the translation
   const regex = new RegExp(`(?:\/(${[...locales].join('|')})\.)`)
+  const found = Object.entries(resources)
+    .find(([path, resource]) => {
+      if (typeof resource !== 'object' || !resource || !(componentName in resource))
+        return false
 
-  if (locale !== defaultLocale) {
-    const translation = Object.entries(resources)
-      .find(([path, resource]) => {
-        if (typeof resource !== 'object' || !resource || !(componentName in resource))
-          return false
+      const array = regex.exec(path)
+      if (array === null)
+        return false
 
-        const array = regex.exec(path)
-        if (array === null)
-          return false
+      const result = array.at(1)
+      if (!result)
+        return false
 
-        const result = array.at(1)
-        if (result === undefined)
-          return false
+      return result === locale
+    })
+    ?.at(1)
 
-        return result === locale
-      })
-      ?.at(1)
+  if (!found)
+    return { locale }
 
-    if (!translation)
-      return { locale }
+  // use base translation as guide to format the found one
+  const entries = Object.entries(found[componentName as keyof typeof found])
+    .map(([key, value]) => {
+      const baseTranslationValue = baseTranslation[key] as string | Transformer | undefined
+      if (!baseTranslationValue)
+        return []
 
-    t = translation[componentName as keyof typeof translation]
-  }
-  else {
-    t = Object.fromEntries(
-      Object.entries(baseTranslation).map(([key, value]) => {
-        if (isTransformer(value)) {
-          return [
-            key, value.input,
-          ]
-        }
+      if ((typeof value !== 'string' && typeof value !== 'object') || value === null)
+        return []
 
-        return [
-          key, value,
-        ]
-      }),
-    ) as TSchema
-  }
+      if (typeof baseTranslationValue === 'string')
+        return [key, value]
 
-  (Object.keys(t) as Array<TKey>).forEach((key) => {
-    const value: unknown = baseTranslation[key]
+      return [
+        key, (...args: unknown[]) => baseTranslationValue.transform(locale, value, args),
+      ]
+    })
+    .filter(value => value.length > 0)
 
-    if (!isTransformer(value))
-      return
-
-    const input = t[key] as string | object
-    t[key] = ((...args) => value.transform(locale, input, args)) as TSchema[TKey]
-  })
-
-  return { locale, t }
-}
-
-function isTransformer(value: unknown): value is Transformer {
-  if (
-    typeof value === 'object'
-    && value
-    && 'transform' in value
-    && 'input' in value
-    && typeof value.transform === 'function'
-    && (typeof value.input === 'object' || typeof value.input === 'string')
-    && value.transform
-    && value.input
-  )
-    return true
-
-  return false
+  return { locale, t: Object.fromEntries(entries) }
 }
