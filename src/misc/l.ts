@@ -4,9 +4,7 @@ import { locales } from 'virtual:nanointl'
 import type { FunctionParameters, Schema } from '../locale'
 import { useLocale } from '../locale'
 
-interface LFunctionReturnType<T extends Schema> {
-  [locale: Locale]: T
-}
+interface LFunctionReturnType<T extends Schema> extends Record<Locale, T> { }
 
 export function l<T extends Schema>(...[componentName, baseTranslation]: FunctionParameters<T>): LFunctionReturnType<T> {
   const map = new Map<Locale, T>()

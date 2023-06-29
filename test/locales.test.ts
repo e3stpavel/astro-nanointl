@@ -8,6 +8,7 @@ describe('useLocales util', () => {
     expect(result).toBeDefined()
     expect(result).toHaveProperty('defaultLocale')
     expect(result).toHaveProperty('locales')
+    expect(result).toHaveProperty('l')
 
     expect(result.defaultLocale).toBe('en')
     expect(result.locales).toStrictEqual(['en', 'ru'])
