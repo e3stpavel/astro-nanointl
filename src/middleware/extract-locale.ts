@@ -1,6 +1,9 @@
 import { defineMiddleware } from 'astro/middleware'
 import { useLocale } from '../locale'
 
+/**
+ * Extracts the locale from `Astro.params`, either the `locale` or `lang` attribute
+ */
 export const onRequest = defineMiddleware(({ locals, params }, next) => {
   // let header: string | undefined
   const param = params.locale ?? params.lang

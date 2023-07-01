@@ -17,6 +17,14 @@ function castToArrayNonEmpty<T>(array: Array<T>): ArrayNonEmpty<T> {
   throw new Error(`Array '${JSON.stringify(array)}' does not have any locales.`)
 }
 
+/**
+ * Returns all the available locales and other things.
+ *
+ * @returns An object containing:
+ *  - Non-empty array of all available locales specified by user on integration setup
+ *  - Default locale, either explicitly specified by user or the first item of locales array
+ *  - {@link l} function
+ */
 export function useLocales(): UseLocalesReturnType {
   return {
     locales: castToArrayNonEmpty([...locales]),

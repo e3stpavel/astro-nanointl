@@ -3,7 +3,16 @@ import { defaultLocale, locales, resources } from 'virtual:nanointl'
 import { format } from './misc/format'
 
 export type Schema = Record<string, string | ((...args: any[]) => string)>
-export type FunctionParameters<T> = [componentName: string, baseTranslation: T]
+export type FunctionParameters<T> = [
+  /**
+   * Name of the exact part of the translation
+   */
+  componentName: string,
+  /**
+   * An object used for TypeScript types and translation functions (`count()`, `params()`, etc)
+   */
+  baseTranslation: T,
+]
 
 interface UseLocaleReturnType<T extends Schema> {
   locale: Locale
@@ -16,6 +25,18 @@ interface Transformer {
   input: string
 }
 
+/**
+ * Uses provided `locale` to return formatting functions and translation according to the `baseTranslation`.
+ *
+ * If provided `locale` was `undefined` it is treated as default one, otherwise checks for user defined locales array.
+ *
+ * @param locale - Locale to use for translation
+ * @param param1 - Function arguments
+ * @returns An object containing:
+ *  - Translation for specific locale, `t`
+ *  - Parsed locale
+ *  - Formatting functions for provided locale, `f`
+ */
 export function useLocale<TSchema extends Schema>(
   locale: Locale | undefined = defaultLocale,
   ...[componentName, baseTranslation]: FunctionParameters<TSchema>
