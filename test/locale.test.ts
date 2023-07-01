@@ -11,6 +11,7 @@ describe('useLocale util', () => {
 
     expect(result.locale).toBeUndefined()
     expect(result.t).toBeUndefined()
+    expect(result.f).toBeUndefined()
   })
 
   it('should return base translation and default locale when \'undefined\'', () => {
@@ -25,6 +26,9 @@ describe('useLocale util', () => {
     expect(result).toHaveProperty('t')
     expect(result.t).toBeDefined()
     expect(result.t).toEqual({})
+
+    expect(result).toHaveProperty('f')
+    expect(result.f).toBeDefined()
   })
 
   it('should return base translation if locale is default', () => {
