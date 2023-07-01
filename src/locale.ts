@@ -1,5 +1,6 @@
 import type { Locale } from 'virtual:nanointl'
 import { defaultLocale, locales, resources } from 'virtual:nanointl'
+import { format } from './misc/format'
 
 export type Schema = Record<string, string | ((...args: any[]) => string)>
 export type FunctionParameters<T> = [componentName: string, baseTranslation: T]
@@ -7,6 +8,7 @@ export type FunctionParameters<T> = [componentName: string, baseTranslation: T]
 interface UseLocaleReturnType<T extends Schema> {
   locale: Locale
   t: T
+  f: ReturnType<typeof format>
 }
 
 interface Transformer {
@@ -31,7 +33,7 @@ export function useLocale<TSchema extends Schema>(
       ]
     })
 
-    return { locale, t: Object.fromEntries(entries) }
+    return { locale, t: Object.fromEntries(entries), f: format(locale) }
   }
 
   if (!locales.has(locale))
@@ -78,5 +80,5 @@ export function useLocale<TSchema extends Schema>(
     })
     .filter(value => value.length > 0)
 
-  return { locale, t: Object.fromEntries(entries) }
+  return { locale, t: Object.fromEntries(entries), f: format(locale) }
 }
