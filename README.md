@@ -296,6 +296,20 @@ For more advanced use cases you can [create your own transformer using `@nanosto
   </script>
   ```
 - [ ] Don't forget to add [`hreflang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) to your `<a>` links.
+- [ ] Even thought it is not recommended (worse UX) but you can have different pages for different locales. It is quite simple because you can use conditional syntax to make Astro page templates differ from each other. See the example:
+  ```typescript
+  {
+    locale === 'ru'
+      ? <p>Some different layout { t.here }</p>
+      : <h1>Totally diferrent layout { t.here }</h1>
+  }
+  ```
+- [ ] Use `f` object and its functions to format time, dates, numbers, currencies and more. It's built on the top of [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) and provides easy to use API:
+  ```typescript
+  const { f } = useLocale('en', ...)
+
+  console.log(f.time(-2, 'days')) // prints `2 days ago`
+  ```
 - [ ] Have some troubles? Don't hesitate to [add the issue](https://github.com/e3stpavel/astro-nanointl/issues/new) and ask about :wink:
 
 ## API
@@ -371,6 +385,7 @@ Params:
 Returns:
 * :ok_hand: `locale` - defined locale or `undefined` in case if locale does not exist in `locales` array.
 * :ok_hand: `t` - object containing translated values for specified locale or `undefined` in case if translation does not exist. If `undefined` make sure you added `[expected_language].json` file to your `locales` directory.
+* :ok_hand: `f` - object containing function for formatting time, dates, numbers, currencies and more. Uses [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) API under the hood.
 
 ### `extractLocale` middleware
 Extracts the current locale from [`Astro.params`](https://docs.astro.build/en/reference/api-reference/#astroparams) __using `locale` or `lang` properties__. Otherwise sets `undefined` to [`Astro.locals`](https://docs.astro.build/en/reference/api-reference/#astrolocals) `locale` property.
