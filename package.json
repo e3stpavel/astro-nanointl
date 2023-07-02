@@ -1,7 +1,14 @@
 {
   "name": "astro-nanointl",
   "type": "module",
+  "version": "0.0.1",
   "license": "MIT",
+  "keywords": [
+    "astro",
+    "withastro",
+    "astro-component",
+    "astro-integration"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,12 +31,6 @@
     "dist",
     "client.d.ts"
   ],
-  "keywords": [
-    "astro",
-    "withastro",
-    "astro-component",
-    "astro-integration"
-  ],
   "scripts": {
     "build": "tsup index.ts src/index.ts src/middleware/index.ts --format esm --dts --external virtual:nanointl",
     "lint": "tsc && eslint .",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config-ts": "^0.39.5",
+    "@changesets/cli": "^2.26.2",
     "@nanostores/i18n": "^0.10.0",
     "astro": "^2.6.4",
     "eslint": "^8.43.0",
