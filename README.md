@@ -1,5 +1,9 @@
-# Astro NanoIntl
-Small, yet powerful set of tools to integrate _internationalization/i18n/intl_ to your [Astro](astro.build) project. Strategy-agnostic (__supports both SSG and SSR__) and inspired by [`nanostores/i18n`](https://github.com/nanostores/i18n) and Next.js.
+<!-- <h1 align="center">Astro NanoIntl</h1> -->
+
+<!-- ![Artboard – 21](https://github.com/e3stpavel/astro-nanointl/assets/70956582/a56c5902-66a9-46ff-9ccb-8ae5768dda1d) -->
+![Mask Group 9](https://github.com/e3stpavel/astro-nanointl/assets/70956582/db8a0db9-7859-4cce-b38c-efcd97a03a52)
+
+Small, yet powerful set of tools to integrate _internationalization/i18n/intl_ to your [Astro](https://astro.build) project. Strategy-agnostic (__supports both SSG and SSR__) and inspired by [`nanostores/i18n`](https://github.com/nanostores/i18n) and Next.js.
 
 ## Prerequisites
 Please __do not use this tools for client side__ internationalization as they are __not intended to use on the client and may load bunch of unnecessary JavaScript__. If you want to implement i18n on the client please take a look at [`nanostores/i18n`](https://github.com/nanostores/i18n) or pass translations [as props](https://docs.astro.build/en/core-concepts/framework-components/#passing-props-to-framework-components).
@@ -41,12 +45,21 @@ If you're using TypeScript consider adding types to your `env.d.ts`:
 ### TypeScript Wizards
 If you want to be __stricter with types__ you can go ahead and override `UserDefinedIntl` interface with your types in `env.d.ts` like so:
 ```typescript
+/// <reference types="astro/client" />
+/// <reference types="astro-nanointl/client" />
+
 declare module 'virtual:nanointl' {
   interface UserDefinedIntl {
     // here is your locales types
     locales: ['en', 'ru']
   }
 }
+```
+
+The result will be the following:
+```typescript
+const { locales } = useLocales()
+//      ^? const locales: ["en", "ru"]
 ```
 
 ### Declare your translations
@@ -316,7 +329,7 @@ For more advanced use cases you can [create your own transformer using `@nanosto
 Params status table:
 | Emoji | Status |
 | --- | --- |
-| :wave | Required
+| :wave: | Required
 | :ok_hand: | Optional
 
 ### `nanoIntlIntegration`
@@ -400,3 +413,9 @@ Returns:
 * `Response`: either directly, or by calling `next()`.
 
 See the [usage above](#middleware).
+
+---
+
+<p align="right">
+  <a href="https://github.com/e3stpavel/astro-nanointl/blob/main/LICENSE">MIT License</a> © 2023 e3stpavel
+</p>
