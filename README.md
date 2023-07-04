@@ -1,7 +1,7 @@
 <!-- <h1 align="center">Astro NanoIntl</h1> -->
 
 <!-- ![Artboard – 21](https://github.com/e3stpavel/astro-nanointl/assets/70956582/a56c5902-66a9-46ff-9ccb-8ae5768dda1d) -->
-![Mask Group 9](https://github.com/e3stpavel/astro-nanointl/assets/70956582/db8a0db9-7859-4cce-b38c-efcd97a03a52)
+![Mask Group 9](https://github.com/e3stpavel/astro-nanointl/assets/70956582/6973bca0-7eb1-4bbe-8302-b6bd77cb24b1)
 
 Small, yet powerful set of tools to integrate _internationalization/i18n/intl_ to your [Astro](https://astro.build) project. Strategy-agnostic (__supports both SSG and SSR__) and inspired by [`nanostores/i18n`](https://github.com/nanostores/i18n) and Next.js.
 
