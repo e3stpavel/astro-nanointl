@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "astro",
     "withastro",
@@ -34,7 +37,8 @@
   "scripts": {
     "build": "tsup index.ts src/index.ts src/middleware/index.ts --format esm --dts --external virtual:nanointl",
     "lint": "tsc && eslint .",
-    "vitest": "vitest run"
+    "vitest": "vitest run",
+    "release": "pnpm build && changeset publish"
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"

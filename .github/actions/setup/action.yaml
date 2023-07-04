@@ -1,0 +1,31 @@
+name: Setup
+description: Sets up `node` and `pnpm` to execute `pnpm` commands later
+author: e3stpavel
+
+inputs:
+  node-version:
+    description: 'Expected `node` version. See https://github.com/actions/setup-node#supported-version-syntax'
+    required: false
+    default: 18.x
+  pnpm-version:
+    description: 'Expected `pnpm` version. See https://github.com/marketplace/actions/setup-pnpm#version'
+    required: false
+    default: latest
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
