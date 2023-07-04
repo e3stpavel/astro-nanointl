@@ -9,6 +9,7 @@ interface UserOptions<T extends Shape> {
   defaultLocale?: T[number]
 }
 
+// TODO: allow users to provide their own glob pattern
 function importLocalesGlob() {
   return import.meta.glob([
     '/**/{locales,translations}/**/*.json',

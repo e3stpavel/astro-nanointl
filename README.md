@@ -270,7 +270,7 @@ __Keep in mind!__ The translation in files should represent the input transforme
 }
 ```
 
-For more advanced use cases you can [create your own transformer using `@nanostores/i18n` docs](https://github.com/nanostores/i18n#custom-variable-translations).
+For more advanced use cases you can [create your own transformer using `@nanostores/i18n` docs](https://github.com/nanostores/i18n#custom-variable-translations) and by importing `transform` and `strings` helper functions from `astro-nanointl/utils`.
 
 ### Ideas
 - [ ] You can use [Content Collections](https://docs.astro.build/en/guides/content-collections/) and [this example](https://docs.astro.build/en/guides/content-collections/#organizing-with-subdirectories) to add localized content to your pages.
