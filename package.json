@@ -2,9 +2,21 @@
   "name": "astro-nanointl",
   "type": "module",
   "version": "0.0.2",
+  "description": "Tiny set of tools to implement internationalization for Astro",
+  "author": {
+    "name": "e3stpavel"
+  },
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "homepage": "https://github.com/e3stpavel/astro-nanointl#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e3stpavel/astro-nanointl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/e3stpavel/astro-nanointl/issues"
   },
   "keywords": [
     "astro",
