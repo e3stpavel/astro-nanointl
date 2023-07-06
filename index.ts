@@ -9,14 +9,6 @@ interface UserOptions<T extends Shape> {
   defaultLocale?: T[number]
 }
 
-// TODO: allow users to provide their own glob pattern
-function importLocalesGlob() {
-  return import.meta.glob([
-    '/**/{locales,translations}/**/*.json',
-    '!/public/**/{locales,translations}/**/*.json',
-  ], { eager: true, import: 'default' })
-}
-
 export function nanoIntlIntegration<const T extends Shape>({ locales, defaultLocale = locales.at(0)! }: UserOptions<T>): AstroIntegration {
   return {
     name: 'astro-nanointl',
@@ -29,9 +21,6 @@ export function nanoIntlIntegration<const T extends Shape>({ locales, defaultLoc
                 'virtual:nanointl': `
                   export const locales = new Set(${JSON.stringify(locales)})
                   export const defaultLocale = ${JSON.stringify(defaultLocale)}
-                  export const resources = ${JSON.stringify(
-                    importLocalesGlob(),
-                  )}
                 `,
               }),
             ],

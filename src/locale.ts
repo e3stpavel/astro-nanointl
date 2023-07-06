@@ -1,5 +1,5 @@
 import type { Locale } from 'virtual:nanointl'
-import { defaultLocale, locales, resources } from 'virtual:nanointl'
+import { defaultLocale, locales } from 'virtual:nanointl'
 import { format } from './misc/format'
 
 export type Schema = Record<string, string | ((...args: any[]) => string)>
@@ -24,6 +24,13 @@ interface Transformer {
   transform: (locale: Locale, translation: string | object, args: Array<unknown>) => string
   input: string
 }
+
+// By importing resources in runtime
+//  we avoid using pure Node to load them
+const resources = import.meta.glob([
+  '/**/{locales,translations}/**/*.json',
+  '!/public/**/{locales,translations}/**/*.json',
+], { eager: true, import: 'default' })
 
 /**
  * Uses provided `locale` to return formatting functions and translation according to the `baseTranslation`.

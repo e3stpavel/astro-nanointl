@@ -13,7 +13,6 @@ declare module 'virtual:nanointl' {
   
   const locales: ReadonlySet<Locale>
   const defaultLocale: Locale
-  const resources: Record<string, unknown>
 }
 
 declare namespace App {
