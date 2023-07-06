@@ -1,7 +1,7 @@
 {
   "name": "astro-nanointl",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tiny set of tools to implement internationalization for Astro",
   "author": {
     "name": "e3stpavel"
