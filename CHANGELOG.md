@@ -1,5 +1,11 @@
 # astro-nanointl
 
+## 0.0.4
+
+### Patch Changes
+
+- b33fb0e: Fixed `(intermediate value).glob is not a function` issue
+
 ## 0.0.3
 
 ### Patch Changes
