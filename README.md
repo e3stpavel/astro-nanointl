@@ -98,7 +98,7 @@ greetings: # componentName
 ```
 
 ## Play
-Start playing around by using `useLocale` composable to get the `t` object containing translated values and `useLocales` composable which returns default locale and the list of all availbale locales declared by you earlier.
+Start playing around by using [`useLocale`](#uselocale) (also known as `useTranslation` or `createTranslation`) composable to get the `t` object containing translated values and [`useLocales`](#uselocales) (also known as `useTranslations`) composable which returns default locale and the list of all availbale locales declared by you earlier.
 
 ### SSR
 See the simpliest example:
@@ -345,24 +345,30 @@ Params status table:
 ### `nanoIntlIntegration`
 Adds the `virtual:nanointl` module containing user defined props.
 
-Package: `astro-nanointl`
+#### Package:
+`astro-nanointl`
 
-Params:
+#### Params:
 * :wave: `locales` - array of available locales, the order matters
 * :ok_hand: `defaultLocale` - locale from the `locales` array, which should be considered the default
   * _default_ - first element of `locales` array
 
-Returns:
+#### Returns:
 * `AstroIntegration`
 
 ### `useLocales`
 Returns the list of all available locales and `defaultLocale`.
 
-Package: `astro-nanointl/utils`
+#### Aliases: 
+* `useTranslations`
 
-Params: none
+#### Package:
+`astro-nanointl/utils`
 
-Returns:
+#### Params:
+none
+
+#### Returns:
 * :wave: `locales` - non empty array of all available locales, __the order can be not the same as in integration setup__
 * :wave: `defaultLocale` - default locale
 * :wave: `l` - `l` function, that returns the list of all translations in format `{ '[locale]': { key: 'translation' } }`
@@ -370,9 +376,14 @@ Returns:
 ### `useLocale`
 Return the locale and `t` function which is used for translation.
 
-Package: `astro-nanointl/utils`
+#### Aliases:
+* `useTranslation`
+* `createTranslation`
 
-Params:
+#### Package:
+`astro-nanointl/utils`
+
+#### Params:
 * :wave: `locale` - locale to be used for translation
   * if `undefined`, then treated as `defaultLocale`
 * :wave: `componentName` - name of translations workspace
@@ -405,7 +416,7 @@ Params:
   * Must not be deeply nested object.
   * Supports [`nanostores/i18n`](https://github.com/nanostores/i18n) transformers to implement [pluralization](https://github.com/nanostores/i18n#pluralization), [parameters](https://github.com/nanostores/i18n#parameters) and [more](https://github.com/nanostores/i18n#custom-variable-translations).
 
-Returns:
+#### Returns:
 * :ok_hand: `locale` - defined locale or `undefined` in case if locale does not exist in `locales` array.
 * :ok_hand: `t` - object containing translated values for specified locale or `undefined` in case if translation does not exist. If `undefined` make sure you added `[expected_language].json` file to your `locales` directory.
 * :ok_hand: `f` - object containing function for formatting time, dates, numbers, currencies and more. Uses [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) API under the hood.
@@ -413,13 +424,14 @@ Returns:
 ### `extractLocale` middleware
 Extracts the current locale from [`Astro.params`](https://docs.astro.build/en/reference/api-reference/#astroparams) __using `locale` or `lang` properties__. Otherwise sets `undefined` to [`Astro.locals`](https://docs.astro.build/en/reference/api-reference/#astrolocals) `locale` property.
 
-Package: `astro-nanointl/middleware`
+#### Package:
+`astro-nanointl/middleware`
 
-Params:
+#### Params:
 * [`context`](https://docs.astro.build/en/guides/middleware/#context)
 * [`next()`](https://docs.astro.build/en/guides/middleware/#next)
 
-Returns:
+#### Returns:
 * `Response`: either directly, or by calling `next()`.
 
 See the [usage above](#middleware).
