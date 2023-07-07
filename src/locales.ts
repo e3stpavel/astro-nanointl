@@ -32,3 +32,7 @@ export function useLocales(): UseLocalesReturnType {
     l,
   }
 }
+
+export {
+  useLocales as useTranslations,
+}

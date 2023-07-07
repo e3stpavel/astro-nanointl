@@ -104,3 +104,8 @@ export function useLocale<TSchema extends Schema>(
 
   return { locale, t: Object.fromEntries(entries), f: format(locale) }
 }
+
+export {
+  useLocale as useTranslation,
+  useLocale as createTranslation,
+}
