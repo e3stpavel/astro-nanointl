@@ -1,7 +1,7 @@
 {
   "name": "astro-nanointl",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tiny set of tools to implement internationalization for Astro",
   "author": {
     "name": "e3stpavel"
@@ -22,7 +22,13 @@
     "astro",
     "withastro",
     "astro-component",
-    "astro-integration"
+    "astro-integration",
+    "nano",
+    "nanostores",
+    "seo",
+    "accessibility",
+    "i18n",
+    "internationalization"
   ],
   "exports": {
     ".": {
