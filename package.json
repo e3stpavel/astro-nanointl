@@ -22,7 +22,13 @@
     "astro",
     "withastro",
     "astro-component",
-    "astro-integration"
+    "astro-integration",
+    "nano",
+    "nanostores",
+    "seo",
+    "accessibility",
+    "i18n",
+    "internationalization"
   ],
   "exports": {
     ".": {
