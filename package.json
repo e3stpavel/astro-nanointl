@@ -73,10 +73,15 @@
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"
   },
+  "dependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.0.4",
+    "js-yaml": "^4.1.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config-ts": "^0.39.7",
     "@changesets/cli": "^2.26.2",
     "@nanostores/i18n": "^0.10.0",
+    "@types/js-yaml": "^4.0.5",
     "astro": "^2.7.4",
     "eslint": "^8.44.0",
     "tsup": "^7.1.0",

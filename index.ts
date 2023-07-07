@@ -1,6 +1,8 @@
 import type { AstroIntegration } from 'astro'
 import type { Locales } from 'virtual:nanointl'
+import { FAILSAFE_SCHEMA } from 'js-yaml'
 import virtual from 'vite-plugin-virtual'
+import yaml from '@modyfi/vite-plugin-yaml'
 
 // type Shape = Readonly<[string, ...string[]]>
 type Shape = Locales
@@ -17,6 +19,9 @@ export function nanoIntlIntegration<const T extends Shape>({ locales, defaultLoc
         updateConfig({
           vite: {
             plugins: [
+              yaml({
+                schema: FAILSAFE_SCHEMA,
+              }),
               virtual({
                 'virtual:nanointl': `
                   export const locales = new Set(${JSON.stringify(locales)})
