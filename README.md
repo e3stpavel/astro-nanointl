@@ -63,11 +63,11 @@ const { locales } = useLocales()
 ```
 
 ### Declare your translations
-Add your translations to whatever directory you want in project, __but keep in mind__ that integration will scan for every JSON file that ends with locale specified in integration's `locales` property and is in `locales` or `translations` directory except `public` directory. The glob pattern is the following:
+Add your translations to whatever directory you want in project, __but keep in mind__ that integration will scan for every JSON and YAML file that ends with locale specified in integration's `locales` property and is in `locales` or `translations` directory except `public` directory. The glob pattern is the following:
 ```typescript
 import.meta.glob([
-  '/**/{locales,translations}/**/*.json',
-  '!/public/**/{locales,translations}/**/*.json',
+  '/**/{locales,translations}/**/*.{y(a)?ml,json}',
+  '!/public/**/{locales,translations}/**/*.{y(a)?ml,json}',
 ], { eager: true, import: 'default' })
 ```
 
@@ -85,6 +85,16 @@ Translation files should be plain `JSON` files __without deeply nested objects__
     "hello": "Привет" // this is a transaltion object
   }
 }
+```
+
+or
+```yaml
+# locales/ru.yaml
+#  or locales/ru.yml
+#  or ...
+# you got the idea
+greetings: # componentName
+  hello: Привет # translations object
 ```
 
 ## Play
