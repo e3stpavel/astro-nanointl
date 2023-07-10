@@ -29,6 +29,11 @@ export function nanoIntlIntegration<const T extends Shape>({ locales, defaultLoc
                 `,
               }),
             ],
+
+            // fixes: Could not resolve "virtual:nanointl"
+            optimizeDeps: {
+              exclude: ['virtual:nanointl'],
+            },
           },
         })
       },
