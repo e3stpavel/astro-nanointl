@@ -1,0 +1,31 @@
+name: ✨ Feature Request
+description: Describe some feature you want to be added
+labels:
+  - enhancement
+assignees:
+  - e3stpavel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking your time to submit the feature request! Please fill out this form as completely as possible.
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Reason
+      description: Why the feature should be implemented?
+    validations:
+      required: true
+  - type: textarea
+    id: pseudo-code
+    attributes:
+      label: Pseudo implementation
+      description: Can be used to provide basic pseudo code to better describe the feature
+      render: TypeScript
+  - type: checkboxes
+    id: wish
+    attributes:
+      label: Contribution
+      description: Please check the checkbox if you would like to contribute
+      options:
+        - label: I would like to contribute

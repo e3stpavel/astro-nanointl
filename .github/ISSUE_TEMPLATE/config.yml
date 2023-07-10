@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📘 Documentation
+    url: https://github.com/e3stpavel/astro-nanointl#readme
+    about: Explore the documentation
+  - name: Star the repo
+    url: https://github.com/e3stpavel/astro-nanointl
+    about: Show the community that you use this library

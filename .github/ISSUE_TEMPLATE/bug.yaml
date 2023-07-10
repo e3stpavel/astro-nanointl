@@ -1,0 +1,60 @@
+name: 🐛 Bug
+description: Describe some issue or misbehaviour caused by the existing code
+labels:
+  - bug
+assignees:
+  - e3stpavel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking your time to file a bug report! Please fill out this form as completely as possible.
+  - type: input
+    id: astro-version
+    attributes:
+      label: Astro version
+      description: What version of [`Astro`](https://astro.build) are you using?
+      placeholder: 0.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: Describe the issue
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Describe your expected behaviour
+    validations:
+      required: true
+  - type: dropdown
+    id: strategy
+    attributes:
+      label: What are you using?
+      description: What is your current `output` mode?
+      options:
+        - static
+        - hybrid
+        - server
+    validations:
+      required: true
+  - type: dropdown
+    id: adapter
+    attributes:
+      label: Adapter
+      description: If you're using `server`, please clarify what adapter are you using
+      options:
+        - Cloudfare
+        - Deno
+        - Netlify
+        - Node
+        - Vercel
+  - type: textarea
+    id: additions
+    attributes:
+      label: Do you have anything to add?
+      description: Steps to reproduce, more system info, link to reproduction etc
