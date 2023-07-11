@@ -1,5 +1,11 @@
 # astro-nanointl
 
+## 0.0.6
+
+### Patch Changes
+
+- 9bb2395: :bug: Fixed `Could not resolve "virtual:nanointl"` in `extractLocale` middleware
+
 ## 0.0.5
 
 ### Patch Changes
