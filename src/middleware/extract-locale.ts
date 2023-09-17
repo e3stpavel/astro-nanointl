@@ -1,3 +1,4 @@
+import type { MiddlewareResponseHandler } from 'astro'
 import { defineMiddleware } from 'astro/middleware'
 import { useLocale } from '../locale'
 
@@ -20,4 +21,4 @@ export const onRequest = defineMiddleware(({ locals, params }, next) => {
   locals.locale = locale
 
   return next()
-})
+}) satisfies MiddlewareResponseHandler

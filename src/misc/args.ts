@@ -1,5 +1,13 @@
 import { strings, transform } from '@nanostores/i18n'
-import type { TranslationFunction } from '@nanostores/i18n/create-i18n'
+import type { Translation, TranslationJSON } from '@nanostores/i18n'
+
+// NOTE: nanostores/i18n does not export TranslationFunction anymore
+//  guess because of tree shaking
+export interface TranslationFunction<
+  TArguments extends any[] = any[], TOutput = TranslationJSON | Translation,
+> {
+  (...args: TArguments): TOutput
+}
 
 interface Args {
   /**
