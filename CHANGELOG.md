@@ -1,5 +1,11 @@
 # astro-nanointl
 
+## 0.0.7
+
+### Patch Changes
+
+- e439b6f: Fixed `unmet peer dependency` for Astro `^v3.0.0`
+
 ## 0.0.6
 
 ### Patch Changes
