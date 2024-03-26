@@ -1,6 +1,4 @@
-import type { Locale } from 'virtual:nanointl'
-
-export function format(locale: Locale) {
+export function format(locale: string) {
   return {
     /**
      * Enables language-sensitive date and time formatting.

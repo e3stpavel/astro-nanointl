@@ -31,67 +31,26 @@
     "internationalization"
   ],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js"
-    },
-    "./middleware": {
-      "types": "./dist/middleware/index.d.ts",
-      "import": "./dist/middleware/index.js"
-    },
-    "./client": {
-      "types": "./client.d.ts"
-    },
+    ".": "./index.ts",
     "./package.json": "./package.json"
   },
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "index": [
-        "dist/index.d.ts"
-      ],
-      "utils": [
-        "dist/utils/index.d.ts"
-      ],
-      "middleware": [
-        "dist/middleware/index.d.ts"
-      ],
-      "client": [
-        "client.d.ts"
-      ]
-    }
-  },
   "files": [
-    "dist",
-    "client.d.ts"
+    "index.ts",
+    "src"
   ],
   "scripts": {
-    "build": "tsup --format esm --dts",
     "lint": "tsc && eslint .",
     "vitest": "vitest run",
-    "release": "pnpm build && changeset publish"
+    "release": "changeset publish"
   },
   "peerDependencies": {
-    "astro": "^2.0.0-beta.0 || ^3.0.0"
-  },
-  "dependencies": {
-    "@modyfi/vite-plugin-yaml": "^1.0.4",
-    "@nanostores/i18n": "^0.10.0",
-    "js-yaml": "^4.1.0"
+    "astro": "^4.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.42.0",
-    "@changesets/cli": "^2.26.2",
-    "@types/js-yaml": "^4.0.6",
-    "astro": "^3.1.0",
-    "eslint": "^8.49.0",
-    "tsup": "^7.2.0",
-    "vite-plugin-virtual": "^0.2.0",
-    "vitest": "^0.34.4"
+    "@antfu/eslint-config": "^2.9.0",
+    "@changesets/cli": "^2.27.1",
+    "astro": "^4.5.9",
+    "eslint": "^8.57.0",
+    "vitest": "^1.4.0"
   }
 }

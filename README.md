@@ -122,7 +122,7 @@ To avoid errors we can also add check for `undefined` and throw [`404`](https://
 ```typescript
 if (!locale || !t) {
   return new Response(null, {
-    status: 404, 
+    status: 404,
     statusText: 'Not Found'
   })
   // or
@@ -229,7 +229,7 @@ __Keep in mind!__ You can also use `useLocale` composable in `getStaticPaths` fu
 
 ### Parameterization, pluralization and more
 Out of the box you can use following transformers:
-* `params` - lets you add parameters to your translation, like so: 
+* `params` - lets you add parameters to your translation, like so:
 ```typescript
 greet: params<{ name: string }>('Hello {name}!')
 // then use
@@ -286,7 +286,7 @@ For more advanced use cases you can [create your own transformer using `@nanosto
 - [ ] You can use [Content Collections](https://docs.astro.build/en/guides/content-collections/) and [this example](https://docs.astro.build/en/guides/content-collections/#organizing-with-subdirectories) to add localized content to your pages.
 - [ ] You can add custom middleware to add the [`Content-Language` response header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language). This will allow
   > to specify the __page's intended audience__ and can indicate that this is more than one language. _(MDN)_
-  
+
   So the implementation will look something like that (considering that we are using [`extractLocale` middleware](#middleware)):
   ```typescript
   export const onRequest = defineMiddleware(async ({ locals }, next) => {
@@ -310,7 +310,7 @@ For more advanced use cases you can [create your own transformer using `@nanosto
   ```typescript
   <script>
     const locale = document.documentElement.lang
-    
+
     // vanilla version
     window.localStorage.setItem('locale', locale)
     // or nanostores
@@ -359,7 +359,7 @@ Adds the `virtual:nanointl` module containing user defined props.
 ### `useLocales`
 Returns the list of all available locales and `defaultLocale`.
 
-#### Aliases: 
+#### Aliases:
 * `useTranslations`
 
 #### Package:
