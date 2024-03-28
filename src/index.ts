@@ -1,12 +1,10 @@
+import type { Translations } from './misc/collection-schema'
 import type { TransformFunction, TranslationFunction } from './transformers'
 
 export { format } from './misc/format'
 
-// TODO: infer content collection schema type
-type Translations = Record<string, string> | undefined
-
 interface Options {
-  data: Translations
+  data: Translations | undefined
   locale: string
 }
 
@@ -28,6 +26,6 @@ export function useTranslations<T extends TranslationSchema>(schema: T, options:
         return [key, translation ?? value]
 
       return [key, value(options.locale, translation)]
-    })
+    }),
   )
 }
