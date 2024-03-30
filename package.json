@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "lint": "tsc && eslint .",
-    "vitest": "vitest run",
+    "test": "vitest",
     "release": "changeset publish"
   },
   "peerDependencies": {
