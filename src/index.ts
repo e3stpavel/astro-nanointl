@@ -1,4 +1,4 @@
-import type { Translations } from './misc/collection-schema'
+import type { Translations } from './schema'
 import type { TransformFunction, TranslationFunction } from './transformers/types'
 
 export { format } from './misc/format'
