@@ -6,20 +6,16 @@ describe('use with simple strings', () => {
   const translations = { hello: 'Привет' }
 
   it('returns translations', ({ expect }) => {
-    const options = {
-      data: translations,
-      locale: 'ru',
-    }
+    const options = { data: translations, locale: 'ru' }
+
     const t = useTranslations(schema, options)
 
     expect(t).toStrictEqual(translations)
   })
 
   it('fallbacks to schema', ({ expect }) => {
-    const options = {
-      data: undefined,
-      locale: 'en',
-    }
+    const options = { data: undefined, locale: 'en' }
+
     const t = useTranslations(schema, options)
 
     expect(t).toStrictEqual(schema)
@@ -46,6 +42,7 @@ describe('use with transformers', () => {
       data: { transform: 'заглушка' },
       locale: 'ru',
     }
+
     const t = useTranslations(schema, options)
 
     expect(t).toHaveProperty('transform')
@@ -56,10 +53,8 @@ describe('use with transformers', () => {
   })
 
   it('uses transformer when fallback', ({ expect }) => {
-    const options = {
-      data: undefined,
-      locale: 'en',
-    }
+    const options = { data: undefined, locale: 'en' }
+
     const t = useTranslations(schema, options)
 
     expect(t).toHaveProperty('transform')
