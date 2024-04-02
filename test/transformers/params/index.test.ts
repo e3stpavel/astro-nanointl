@@ -1,4 +1,4 @@
-import { expect, it } from 'vitest'
+import { it } from 'vitest'
 import { useTranslations } from '~/index'
 import { params } from '~/transformers'
 
@@ -46,7 +46,7 @@ it('selects correct translation when fallback', ({ expect }) => {
   expect(result).toContain(translations.value.substring(0, 16))
 })
 
-it('ignores unnecessary params', () => {
+it('ignores unnecessary params', ({ expect }) => {
   const randomValue = 'value'
   const options = { data: undefined, locale: 'en' }
 
@@ -56,7 +56,7 @@ it('ignores unnecessary params', () => {
   expect(result).not.toContain(randomValue)
 })
 
-it('skips interpolation if no value is presented', () => {
+it('skips interpolation if no value is presented', ({ expect }) => {
   const options = { data: undefined, locale: 'en' }
 
   const t = useTranslations(schema, options)

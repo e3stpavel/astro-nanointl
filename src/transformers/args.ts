@@ -8,7 +8,7 @@ export function args<T extends string>(input: T): TransformFunction<T, ExtractAr
   return (_locale, translation = input) => {
     return (...args) => {
       return translation.replaceAll(/%\d/g, substring =>
-        args[+substring.slice(1) - 1])
+        args[+substring.slice(1) - 1] ?? substring)
     }
   }
 }
