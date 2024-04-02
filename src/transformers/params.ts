@@ -11,7 +11,7 @@ export function params<T extends string>(input: T): TransformFunction<T, Extract
       let result = translation.toString()
 
       Object.keys(params).forEach(key =>
-        result = translation.replaceAll(`{${key}}`, (params as Record<string, string>)[key]),
+        result = result.replaceAll(`{${key}}`, (params as Record<string, string>)[key]),
       )
 
       return result
