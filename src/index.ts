@@ -1,8 +1,6 @@
 import type { Translations } from './schema'
 import type { TransformFunction, TranslationFunction } from './transformers/types'
 
-export { format } from './misc/format'
-
 interface Options {
   data: Translations | undefined
   locale: string
