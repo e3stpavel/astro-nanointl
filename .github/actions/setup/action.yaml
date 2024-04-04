@@ -6,7 +6,7 @@ inputs:
   node-version:
     description: 'Expected `node` version. See https://github.com/actions/setup-node#supported-version-syntax'
     required: false
-    default: 18.x
+    default: '20'
   pnpm-version:
     description: 'Expected `pnpm` version. See https://github.com/marketplace/actions/setup-pnpm#version'
     required: false
