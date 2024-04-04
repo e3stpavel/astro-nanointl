@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, it, vi } from 'vitest'
-import { useTranslations } from '~/index'
+import { useTranslations } from 'src/index'
 
 describe('use with simple strings', () => {
   const schema = { hello: 'Hello' }

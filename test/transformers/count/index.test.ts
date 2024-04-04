@@ -1,6 +1,6 @@
 import { it } from 'vitest'
-import { useTranslations } from '~/index'
-import { count } from '~/transformers'
+import { useTranslations } from 'src/index'
+import { count } from 'src/transformers'
 
 const schema = {
   count: count({

@@ -1,6 +1,6 @@
 import { it } from 'vitest'
-import { useTranslations } from '~/index'
-import { args } from '~/transformers'
+import { useTranslations } from 'src/index'
+import { args } from 'src/transformers'
 
 const translations = {
   args: 'Добро пожаловать на борт! Скажите привет %1, %2 и %3',

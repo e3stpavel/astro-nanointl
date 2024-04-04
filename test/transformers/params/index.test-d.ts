@@ -1,6 +1,6 @@
 import { describe, expectTypeOf, it } from 'vitest'
-import { useTranslations } from '~/index'
-import { params } from '~/transformers'
+import { useTranslations } from 'src/index'
+import { params } from 'src/transformers'
 
 const t = useTranslations({
   params: params('Good {timeOfDay}, {name}!'),

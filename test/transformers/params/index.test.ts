@@ -1,6 +1,6 @@
 import { it } from 'vitest'
-import { useTranslations } from '~/index'
-import { params } from '~/transformers'
+import { useTranslations } from 'src/index'
+import { params } from 'src/transformers'
 
 // do not use `as const` as it will make it harder to test because of strict types
 const translations = {

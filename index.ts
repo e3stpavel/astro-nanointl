@@ -1,3 +1,3 @@
-export { useTranslations } from '~/index'
-export { format } from '~/misc/format'
-export { translationsSchema } from '~/schema'
+export { useTranslations } from './src/index'
+export { format } from './src/misc/format'
+export { translationsSchema } from './src/schema'

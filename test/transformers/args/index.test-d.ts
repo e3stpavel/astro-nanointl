@@ -1,6 +1,6 @@
 import { describe, expectTypeOf, it } from 'vitest'
-import { useTranslations } from '~/index'
-import { args } from '~/transformers'
+import { useTranslations } from 'src/index'
+import { args } from 'src/transformers'
 
 const t = useTranslations({
   args: args('Good %1, %2!'),
