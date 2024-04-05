@@ -62,7 +62,71 @@ Sounds awesome, right? However, here are few points you should remember:
   * The translations must match the schema you declared inside your source code, otherwise they won't be used
   * Alongside with your translations you must provide the locale they are created for, which should be comparable with the [one JavaScript `Intl` can use](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument)
 
+### Use Translations
+Use the `useTranslations` function to start localization:
+
+```typescript
+import { useTranslations } from "astro-nanointl"
+
+const locale = Astro.currentLocale!
+const translations = await getTranslations(`${locale}/index`)
+
+const t = useTranslations({
+  hello: 'world',
+  stars: count({
+    one: '{count} star',
+    many: '{count} stars'
+  })
+}, {
+  data: translations?.data
+  locale
+})
+```
+
+From the example you can see that `useTranslations` function takes two arguments, both of them are objects.
+
+First argument is the translations schema. The schema represents your default language translations and is used to seamlessly match your other translations against it. While declaring the schema you can also use transformers ([see Parameterization, Pluralization and more](#parameterization-pluralization-and-more)) to add some features while localizing.
+
+```typescript
+{
+  hello: 'world',
+
+  // with transformer
+  stars: count({
+    one: '{count} star',
+    many: '{count} stars'
+  })
+}
+```
+
+Second argument is translations themselves. This is the object containing two properties: `data` and `locale`:
+
+  * The `data` property should contain the translations you can load from anywhere you want but __must match the translations schema__, otherwise the default language translations will be used. The `data` property is not optional, but it accepts `undefined` as a value, which means that no translations exist and the default language translations should be used.
+
+  * The `locale` property must contain the locale for which translations were created for. It also must be compatible with [JavaScript `Intl` spec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
+
+```typescript
+{
+  data: translations?.data // can be `undefined`
+  locale
+}
+```
+
+To wrap things up:
+  * `useTranslations` requires two arguments:
+    * Translations schema:
+      * represents your default language translations
+      * can use transformers ([see Parameterization, Pluralization and more](#parameterization-pluralization-and-more)) to add some features
+    * Translations:
+      * `data`:
+        * contains translations to use
+        * must match the translations schema
+        * accepts `undefined` as a value, which means that no translations exist and the default language translations should be used
+      * `locale` contains the locale for which translations were created for
+
 ### Usage with Content Collections
+If you decided to store translations using [Content Collections](https://docs.astro.build/en/guides/content-collections/), we have a great news for you: we export the `translationsSchema` to help you define your collection schema!
+
 `config.ts` file inside `src/content` directory:
 
 ```typescript
@@ -132,6 +196,8 @@ const t = useTranslations({
 ```
 
 ### Usage with file system
+If you feel comfortable with storing your translations as files and manage them with something like [i18n-ally](https://github.com/lokalise/i18n-ally), this example usage is for you!
+
 Folder structure:
 
 ```
@@ -216,7 +282,7 @@ const t = useTranslations({
 <p>{ t.stars(10) }</p>
 ```
 
-## Parameterization, pluralization and more
+## Parameterization, Pluralization and more
 You can use several transformers that will help you to enhance your developer experience while localizing.
 
 > __Note!__ The transformers are imported from `astro-nanointl/transformers`
@@ -261,7 +327,7 @@ t.myNameIs('John') // prints `Hey, my name is John`
 ```
 
 ### `format`
-You can use `format` to format dates, numbers etc. It is just an abstraction for JavaScript `Intl` to simplify its use. You can always replace it with default `Intl` implementation if you want.
+Although it is not a transformer, you can use `format` to format dates, numbers etc. It is just an abstraction for JavaScript `Intl` to simplify its use. You can always replace it with default `Intl` implementation if you want.
 
 ```typescript
 import { format } from 'astro-nanointl'

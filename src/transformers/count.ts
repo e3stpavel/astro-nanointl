@@ -6,6 +6,22 @@ interface Input extends Partial<Record<Intl.LDMLPluralRule, string>> {
 
 // TODO: Intl options for number?
 
+/**
+ * Use it when you need to introduce pluralization
+ *
+ * @example
+ * ```typescript
+ * const t = useTranslations({
+ *  stars: count({
+ *    one: 'a star',
+ *    many: '{count} stars'
+ *  })
+ * }, translations)
+ *
+ * t.count(1) // prints `a star`
+ * t.count(3) // prints `3 stars`
+ * ```
+ */
 export function count(input: Input): TransformFunction<Input, number> {
   return (locale, translation = input) => {
     return (number) => {
