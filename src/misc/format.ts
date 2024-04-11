@@ -1,6 +1,11 @@
-import type { Locale } from 'virtual:nanointl'
+// TODO: convert to transformer(s) later?
 
-export function format(locale: Locale) {
+/**
+ * Use it to format dates, numbers etc.
+ *
+ * It is just an abstraction for `Intl` to simplify its use
+ */
+export function format(locale: string) {
   return {
     /**
      * Enables language-sensitive date and time formatting.

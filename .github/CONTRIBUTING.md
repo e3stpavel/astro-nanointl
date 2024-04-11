@@ -8,16 +8,10 @@ git clone && cd ...
 pnpm install
 ```
 
-## Development
-To build the project use:
-```shell
-pnpm build
-```
-
 ## Testing and code style
 To run tests use:
 ```shell
-pnpm vitest
+pnpm test
 ```
 
 Also before commiting make sure you follow the consistent code style:
@@ -26,7 +20,7 @@ pnpm lint # to check for issues
 pnpm lint --fix # to fix autofixable issues
 ```
 
-Also I personally recommend to test if everything is working by using `pnpm link ...` and by manually copying files from `/dist` to target project running Astro.
+Also I personally recommend to test if everything is working by `pnpm link ...` (or [using `file:` protocol](https://github.com/pnpm/pnpm/issues/6804#issuecomment-1635571574)) to some empty Astro project.
 
 ## Pushing your changes
 Once you are ready with your changes please do not forget to use

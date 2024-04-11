@@ -1,9 +1,7 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vitest/config'
+import { getViteConfig } from 'astro/config'
 
-export default defineConfig({
-  test: {
-    setupFiles: ['./test/setup.ts'],
-  },
+export default getViteConfig({
+  test: {},
 })

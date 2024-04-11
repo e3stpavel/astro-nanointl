@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-  # eslint-disable-next-line yml/no-empty-mapping-value
   workflow_dispatch:
 
 jobs:
@@ -20,7 +19,4 @@ jobs:
         run: pnpm lint
 
       - name: Test
-        run: pnpm vitest
-
-      - name: Build
-        run: pnpm build
+        run: pnpm test
