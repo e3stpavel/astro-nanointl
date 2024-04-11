@@ -1,5 +1,35 @@
 # astro-nanointl
 
+## 1.0.0
+
+### Major Changes
+
+- 89bbcb7: Added new `useTranslations` function
+
+  There is no backward compatibility because function API is changed. Refer to docs to learn more.
+
+- 3a570d3: Removed some overhead and updated to Astro `v4.0.0`
+
+  There is no backward compatibility because of [new built-in Astro i18n API](https://docs.astro.build/en/guides/internationalization/).
+
+  Deprecated features:
+
+  - Custom integration
+  - Literal types for locales
+  - Strict translations loading from file system
+  - Access to default locale
+  - Custom middleware
+  - `l` function
+  - Integration with [`nanostores`](https://github.com/nanostores/nanostores) and [`@nanostores/i18n`](https://github.com/nanostores/i18n)
+
+### Patch Changes
+
+- fd66630: Updated `args` transformer with `@nanostores/i18n` dependencies removed
+- 1a07cb4: Added [Content Collection](https://docs.astro.build/en/guides/content-collections) custom translations schema.
+  See [Using third-party collection schemas](https://docs.astro.build/en/guides/content-collections/#using-third-party-collection-schemas) for more.
+- ca26e87: Updated `count` transformer with `@nanostores/i18n` dependencies removed
+- 1187648: Updated `params` transformer with `@nanostores/i18n` dependencies removed
+
 ## 0.0.7
 
 ### Patch Changes
