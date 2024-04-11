@@ -47,10 +47,11 @@
     "astro": "^4.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.12.1",
+    "@antfu/eslint-config": "^2.13.3",
     "@changesets/cli": "^2.27.1",
     "astro": "^4.5.15",
     "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
     "vitest": "^1.4.0"
   }
 }
